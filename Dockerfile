@@ -1,4 +1,4 @@
-FROM rocker/r-ver:4.4
+FROM rocker/r-ver:4.5
 
 # System dependencies for Seurat and HDF5
 RUN apt-get update && apt-get install -y \
