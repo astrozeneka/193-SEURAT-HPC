@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 RUN Rscript -e "\
     install.packages(c('ggplot2', 'dplyr'), repos='https://cloud.r-project.org'); \
     install.packages('BiocManager', repos='https://cloud.r-project.org'); \
-    BiocManager::install(version='3.20'); \
+    BiocManager::install(version='3.22'); \
     install.packages('Seurat', repos='https://cloud.r-project.org') \
 "
 
