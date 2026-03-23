@@ -44,3 +44,6 @@ tf_acts <- run_ulm(
 )
 
 head(tf_acts)
+
+# Export as CSV
+write.csv(tf_acts, "tf_activities_ulm.csv", row.names = FALSE)
