@@ -4,7 +4,7 @@
 export DOCKER_API_VERSION=1.44
 
 
-Merge objects (with slide ID)
+Merge objects (with slide ID) [ Current Step ]
     ↓
 QC filter per slide
     ↓

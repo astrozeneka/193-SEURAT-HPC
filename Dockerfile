@@ -17,6 +17,9 @@ RUN Rscript -e "\
     install.packages('BiocManager', repos='https://cloud.r-project.org'); \
     BiocManager::install(version='3.20'); \
     install.packages('Seurat', repos='https://cloud.r-project.org') \
+    BiocManager::install('decoupleR') \
 "
+
+WORKDIR /app
 
 CMD ["R"]
