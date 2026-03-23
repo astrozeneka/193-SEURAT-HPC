@@ -4,6 +4,13 @@ library(decoupleR)
 
 larc_obj <- readRDS("larc_datasets/larc_merged_6k.rds")
 
+# ── Filter to annotated cells ────────────────────────────────────────────────
+annotated_cells <- do.call(c, lapply(
+  list.files("../191-SPLIT-COSMIX-SAMPLES/splitted/roi_annotated", pattern = "\\.csv$", full.names = TRUE),
+  function(f) { df <- read.csv(f, row.names = 1); rownames(df)[df$selection_mask == 1] }
+))
+larc_obj <- subset(larc_obj, cells = annotated_cells)
+
 larc_obj <- NormalizeData(
   larc_obj,
   normalization.method = "LogNormalize",
@@ -13,9 +20,10 @@ larc_obj <- NormalizeData(
 
 # ── Subsample for quick test ────────────────────────────────────────────────
 set.seed(42)
-n_cells <- 500
-sampled_cells <- sample(Cells(larc_obj), n_cells)
-larc_sub <- subset(larc_obj, cells = sampled_cells)
+n_cells <- 1000
+# sampled_cells <- sample(Cells(larc_obj), n_cells)
+#larc_sub <- subset(larc_obj, cells = sampled_cells)
+larc_sub <- larc_obj
 
 # Extract log-normalized matrix (genes × cells)
 log_mat <- GetAssayData(larc_sub, assay = "RNA", layer = "data")
