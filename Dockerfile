@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     libgit2-dev \
     libpng-dev \
+    libfftw3-dev \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
