@@ -16,6 +16,7 @@ RUN Rscript -e "\
     install.packages(c('ggplot2', 'dplyr'), repos='https://cloud.r-project.org'); \
     install.packages('BiocManager', repos='https://cloud.r-project.org'); \
     BiocManager::install(version='3.22'); \
+    BiocManager::install('multtest'); \
     install.packages('Seurat', repos='https://cloud.r-project.org'); \
     BiocManager::install('OmnipathR'); \
     BiocManager::install('decoupleR') \
