@@ -1,2 +1,10 @@
 *.log
 .idea
+larc_datasets
+splitted
+.claude
+cell_list
+geojson
+__pycache__
+stats
+rna_mex
