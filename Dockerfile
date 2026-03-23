@@ -21,6 +21,8 @@ RUN Rscript -e "\
     BiocManager::install('decoupleR') \
 "
 
+RUN Rscript -e "BiocManager::install('DESeq2')"
+
 WORKDIR /app
 
 CMD ["R"]
