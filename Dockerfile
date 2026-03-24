@@ -24,8 +24,9 @@ RUN Rscript -e "\
 "
 
 RUN Rscript -e "BiocManager::install('DESeq2')"
-
 RUN Rscript -e "install.packages('Seurat', repos='https://cloud.r-project.org');"
+RUN Rscipt -e "BiocManager::install('dorothea'); \
+    BiocManager::install('viper'); "
 
 WORKDIR /app
 
