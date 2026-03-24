@@ -25,6 +25,9 @@ RUN Rscript -e "\
 
 RUN Rscript -e "BiocManager::install('DESeq2')"
 
+RUN Rscipt -e "BiocManager::install('dorothea'); \
+    BiocManager::install('viper'); "
+
 WORKDIR /app
 
 CMD ["R"]
