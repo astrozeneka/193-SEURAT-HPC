@@ -25,8 +25,21 @@ RUN Rscript -e "\
 
 RUN Rscript -e "BiocManager::install('DESeq2')"
 RUN Rscript -e "install.packages('Seurat', repos='https://cloud.r-project.org');"
-RUN Rscipt -e "BiocManager::install('dorothea'); \
+RUN Rscript -e "BiocManager::install('dorothea'); \
     BiocManager::install('viper'); "
+
+RUN Rscript -e "install.packages('devtools'); \
+    install.packages('remotes')";
+
+RUN Rscript -e "remotes::install_github( \
+    'Nanostring-Biostats/CosMx-Analysis-Scratch-Space', \
+    subdir = '_code/scPearsonPCA', \
+    ref = 'Main' \
+  );"
+
+RUN Rscript -e "library('remotes'); \
+    devtools::install_github(repo = 'hhoeflin/hdf5r'); \
+    devtools::install_github(repo = 'mojaveazure/loomR', ref = 'develop')"
 
 WORKDIR /app
 

@@ -8,3 +8,6 @@ geojson
 __pycache__
 stats
 rna_mex
+rdata
+*.pdf
+*.sif
