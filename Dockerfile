@@ -28,6 +28,17 @@ RUN Rscript -e "BiocManager::install('DESeq2')"
 RUN Rscipt -e "BiocManager::install('dorothea'); \
     BiocManager::install('viper'); "
 
+RUN Rscript -e "remotes::install_github( \
+      'Nanostring-Biostats/CosMx-Analysis-Scratch-Space', \
+      subdir = '_code/scPearsonPCA', \
+      ref = 'Main' \
+    ); \
+    install.packages(c('data.table', 'ggplot2', 'ggrepel'));  \
+    install.packages('pals'); \
+"
+
+RUN Rscript -e "install.packages('harmony');"
+
 WORKDIR /app
 
 CMD ["R"]
