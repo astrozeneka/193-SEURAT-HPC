@@ -31,15 +31,20 @@ RUN Rscript -e "BiocManager::install('dorothea'); \
 RUN Rscript -e "install.packages('devtools'); \
     install.packages('remotes')";
 
-RUN Rscript -e "remotes::install_github( \
-    'Nanostring-Biostats/CosMx-Analysis-Scratch-Space', \
-    subdir = '_code/scPearsonPCA', \
-    ref = 'Main' \
-  );"
 
 RUN Rscript -e "library('remotes'); \
     devtools::install_github(repo = 'hhoeflin/hdf5r'); \
     devtools::install_github(repo = 'mojaveazure/loomR', ref = 'develop')"
+RUN Rscript -e "remotes::install_github( \
+      'Nanostring-Biostats/CosMx-Analysis-Scratch-Space', \
+      subdir = '_code/scPearsonPCA', \
+      ref = 'Main' \
+    ); \
+    install.packages(c('data.table', 'ggplot2', 'ggrepel'));  \
+    install.packages('pals'); \
+"
+
+RUN Rscript -e "install.packages('harmony');"
 
 WORKDIR /app
 
