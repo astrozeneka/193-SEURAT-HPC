@@ -46,6 +46,12 @@ RUN Rscript -e "remotes::install_github( \
 
 RUN Rscript -e "install.packages('harmony');"
 
+RUN Rscript -e "library('remotes'); \
+    install.packages('Matrix', type = 'source'); \
+    install.packages('irlba', type = 'source'); \
+    devtools::install_github('https://github.com/Nanostring-Biostats/InSituType'); \
+"
+
 WORKDIR /app
 
 CMD ["R"]
