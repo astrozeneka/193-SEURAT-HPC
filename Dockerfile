@@ -52,6 +52,8 @@ RUN Rscript -e "library('remotes'); \
     devtools::install_github('https://github.com/Nanostring-Biostats/InSituType'); \
 "
 
+RUN apt-get update && apt-get install -y libglpk-dev && rm -rf /var/lib/apt/lists/*
+
 RUN Rscript -e "install.packages('leidenbase')"
 
 WORKDIR /app
