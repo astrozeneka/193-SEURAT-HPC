@@ -52,6 +52,8 @@ RUN Rscript -e "library('remotes'); \
     devtools::install_github('https://github.com/Nanostring-Biostats/InSituType'); \
 "
 
+RUN Rscript -e "install.packages('leidenbase')"
+
 WORKDIR /app
 
 CMD ["R"]
