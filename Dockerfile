@@ -54,7 +54,33 @@ RUN Rscript -e "library('remotes'); \
 
 RUN apt-get update && apt-get install -y libglpk-dev && rm -rf /var/lib/apt/lists/*
 
+
+RUN Rscript -e "library('remotes'); \
+    print('Hello!'); \
+    devtools::install_github('saeyslab/nichenetr')\
+"
+
 RUN Rscript -e "install.packages('leidenbase')"
+
+
+RUN Rscript -e "BiocManager::install(c(\
+  'BiocNeighbors',\
+  'ComplexHeatmap',\
+  'BiocParallel'\
+));\
+install.packages(c(\
+  'igraph', 'ggplot2', 'ggalluvial', 'svglite',\
+  'Seurat', 'reticulate', 'umap', 'ggnetwork',\
+  'FNN', 'sna', 'network', 'pbapply', 'future',\
+  'future.apply', 'RColorBrewer', 'NMF', 'circlize',\
+  'ggpubr', 'patchwork', 'Matrix'\
+))"
+
+RUN apt-get update && apt-get install -y libuv1-dev && rm -rf /var/lib/apt/lists/*
+
+
+RUN Rscript -e "library('remotes'); \
+    devtools::install_github('jinworks/CellChat')"
 
 WORKDIR /app
 
