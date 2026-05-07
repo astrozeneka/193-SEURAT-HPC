@@ -82,6 +82,33 @@ RUN apt-get update && apt-get install -y libuv1-dev && rm -rf /var/lib/apt/lists
 RUN Rscript -e "library('remotes'); \
     devtools::install_github('jinworks/CellChat')"
 
+# Do not use sceasy, it is broken with Seurat v5
+#RUN Rscript -e "library('remotes'); \
+#    remotes::install_github('cellgeni/sceasy');"
+RUN Rscript -e " \
+    BiocManager::install('anndataR')"
+
+RUN Rscript -e "BiocManager::install('rhdf5')"
+
+RUN Rscript -e "BiocManager::install('singleR'); \
+    BiocManager::install('celldex');"
+
+RUN apt-get update && apt-get install -y \
+    libbz2-dev \
+    liblzma-dev \
+    zlib1g-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN Rscript -e "BiocManager::install('Rhtslib'); \
+    BiocManager::install('Rsamtools'); \
+    BiocManager::install('rtracklayer');"
+
+RUN Rscript -e "print('Hello'); \
+    BiocManager::install('scDblFinder');"
+
+RUN Rscript -e " \
+    remotes::install_github('Nanostring-Biostats/CosMx-Analysis-Scratch-Space', subdir = '_code/scPearsonPCA', ref = 'Main')"
+
 WORKDIR /app
 
 CMD ["R"]
